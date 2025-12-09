@@ -1,4 +1,4 @@
-# Digit Recognizer
+# 3️⃣ Digit Recognizer
 
 A convolutional neural network (CNN) built using **PyTorch**, trained on the **MNIST handwritten digit dataset** for the Kaggle Digit Recognizer competition.  
 The model reaches **98.6% validation accuracy** and a **0.987 Kaggle Public Score**, with **4.14× faster training** using Apple’s MPS GPU backend.
@@ -7,9 +7,9 @@ The model reaches **98.6% validation accuracy** and a **0.987 Kaggle Public Scor
 
 ## Features
 - Custom CNN built from scratch using PyTorch  
-- Utilizes **Apple Metal Performance Shaders (MPS)** for GPU acceleration  
-- **4.14× faster training** compared to CPU  
-- **0.987 Kaggle Public Score**  
+- Utilizes **Apple Metal Performance Shaders** (MPS) for GPU acceleration  
+- 4.14× faster training compared to CPU  
+- 0.987 Kaggle Public Score  
 - Complete pipeline:
   - Data preprocessing  
   - Train/validation split  
@@ -33,11 +33,24 @@ The model reaches **98.6% validation accuracy** and a **0.987 Kaggle Public Scor
 
 ---
 
+## Building the Model
+![Handwritten-digits-from-the-MNIST-data-set-5-For-practical-machine-learning-tasks](https://github.com/user-attachments/assets/288bd39f-6327-483b-b4dd-58905d871f8e)
+You start with a 28×28 grayscale image shaped (1,28,28).
+Raw pixel values contain both positive and negative information. Applying ReLU removes negative values, keeping only the strongest signals. This allows the network to detect straight segments, bends, and curves in the digits.
+Without ReLU, outputs behave like straight lines with no change in slope. With ReLU, the network produces “bends and kinks” that represent the curves and corners of digits. For example:
+\
+\
+_____/
+\
+Negative inputs are set to zero while positive inputs pass through, highlighting meaningful features and enabling the CNN to learn the essential shapes in the digits for classification.
+
+---
+
 ## CPU vs MPS GPU Training Speed
 
 The same model was trained for **8 epochs** on CPU and on Apple’s MPS GPU.
 
-| Device | Train Time (8 epochs) |
+| Device | Train Time |
 |--------|-------------------------|
 | **CPU** | 89.08 seconds |
 | **MPS GPU** | 21.54 seconds |
