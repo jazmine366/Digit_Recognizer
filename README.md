@@ -42,7 +42,7 @@ A 28×28 grayscale image (1 channel). Each pixel is normalized and passed into t
 
 ## 🧠 How the CNN Learns Features
 
-### 1️⃣ Convolution Layers Extract Edges & Curves  
+###  Convolution Layers Extract Edges & Curves  
 <div align="center">
   <img src="images/3.jpeg" alt="CNN filters / feature maps" width="400">
   <p><em>Convolution filters and feature maps capturing edges, strokes, and curves.</em></p>
