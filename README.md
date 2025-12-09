@@ -16,8 +16,10 @@ The model reaches **98.6% validation accuracy** and a **0.987 Kaggle Public Scor
 
 ##  Input Example (What the Model Sees)
 
-![MNIST Example Digit](IMAGE_URL_1)  
-*Credit: MNIST Dataset*
+<div align="center">
+  <img src="YOUR_IMAGE_URL_1_HERE" alt="MNIST example digit" width="180">
+  <p><em>Example 28×28 grayscale MNIST digit. Credit: YOUR_SOURCE_HERE</em></p>
+</div>
 
 A 28×28 grayscale image (1 channel). Each pixel is normalized and passed into the CNN as a tensor shaped **(1, 28, 28)**.
 
@@ -40,8 +42,10 @@ A 28×28 grayscale image (1 channel). Each pixel is normalized and passed into t
 ## 🧠 How the CNN Learns Features
 
 ### 1️⃣ Convolution Layers Extract Edges & Curves  
-![CNN Filters / Feature Maps](IMAGE_URL_2)  
-*Credit: Stanford CS231n Visualizations*
+<div align="center">
+  <img src="YOUR_IMAGE_URL_2_HERE" alt="CNN filters / feature maps" width="400">
+  <p><em>Convolution filters and feature maps capturing edges, strokes, and curves. Credit: YOUR_SOURCE_HERE</em></p>
+</div>
 
 The first conv layer learns **edges and straight segments** (/, \\, —).  
 The second conv layer learns **bends, corners, and curves** needed to recognize digits like 3, 5, and 8.
@@ -50,8 +54,10 @@ The second conv layer learns **bends, corners, and curves** needed to recognize 
 
 ##  Understanding ReLU (Why It Creates “Bends & Curves”)
 
-![ReLU Activation Function](IMAGE_URL_3)  
-*Credit: Wikipedia / ReLU Activation Graph*
+<div align="center">
+  <img src="YOUR_IMAGE_URL_3_HERE" alt="ReLU activation function" width="350">
+  <p><em>ReLU activation: negative values set to 0, positive values passed through, creating sharp changes in slope. Credit: YOUR_SOURCE_HERE</em></p>
+</div>
 
 Raw pixel values contain positive and negative information.  
 **ReLU removes all negative values**, leaving only strong positive signals.  
@@ -67,8 +73,10 @@ These shape transitions help the CNN understand digits as combinations of **line
 
 ## 🔍 Max Pooling: Keeping Only the Meaningful Parts
 
-![Max Pooling Diagram](IMAGE_URL_4)  
-*Credit: DeepLearning.ai / Coursera CNN Course*
+<div align="center">
+  <img src="YOUR_IMAGE_URL_4_HERE" alt="Max pooling illustration" width="400">
+  <p><em>Max pooling reduces spatial size while preserving the strongest activations. Credit: YOUR_SOURCE_HERE</em></p>
+</div>
 
 Max Pooling reduces image size while keeping the **strongest activations**.  
 This helps the model focus on the most important features (like strokes of a digit) and ignore noise.
