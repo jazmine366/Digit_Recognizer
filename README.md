@@ -17,8 +17,9 @@ The model reaches **98.6% validation accuracy** and a **0.987 Kaggle Public Scor
 ##  Input Example (What the Model Sees)
 
 <div align="center">
-  <img src="YOUR_IMAGE_URL_1_HERE" alt="MNIST example digit" width="180">
-  <p><em>Example 28×28 grayscale MNIST digit. Credit: YOUR_SOURCE_HERE</em></p>
+  <img src="images/1.png" alt="digit 1" width="180" />
+  <img src="images/2.png" alt="digit 2" width="180" />
+  <p><em>Example 28×28 grayscale MNIST digit.</em></p>
 </div>
 
 A 28×28 grayscale image (1 channel). Each pixel is normalized and passed into the CNN as a tensor shaped **(1, 28, 28)**.
@@ -43,8 +44,8 @@ A 28×28 grayscale image (1 channel). Each pixel is normalized and passed into t
 
 ### 1️⃣ Convolution Layers Extract Edges & Curves  
 <div align="center">
-  <img src="YOUR_IMAGE_URL_2_HERE" alt="CNN filters / feature maps" width="400">
-  <p><em>Convolution filters and feature maps capturing edges, strokes, and curves. Credit: YOUR_SOURCE_HERE</em></p>
+  <img src="images/3.jpeg" alt="CNN filters / feature maps" width="400">
+  <p><em>Convolution filters and feature maps capturing edges, strokes, and curves.</em></p>
 </div>
 
 The first conv layer learns **edges and straight segments** (/, \\, —).  
@@ -55,8 +56,8 @@ The second conv layer learns **bends, corners, and curves** needed to recognize 
 ##  Understanding ReLU (Why It Creates “Bends & Curves”)
 
 <div align="center">
-  <img src="YOUR_IMAGE_URL_3_HERE" alt="ReLU activation function" width="350">
-  <p><em>ReLU activation: negative values set to 0, positive values passed through, creating sharp changes in slope. Credit: YOUR_SOURCE_HERE</em></p>
+  <img src="images/Relu-activation-function.png" alt="ReLU activation function" width="350">
+  <p><em>ReLU activation: negative values set to 0, positive values passed through, creating sharp changes in slope. </em></p>
 </div>
 
 Raw pixel values contain positive and negative information.  
@@ -74,8 +75,8 @@ These shape transitions help the CNN understand digits as combinations of **line
 ## 🔍 Max Pooling: Keeping Only the Meaningful Parts
 
 <div align="center">
-  <img src="YOUR_IMAGE_URL_4_HERE" alt="Max pooling illustration" width="400">
-  <p><em>Max pooling reduces spatial size while preserving the strongest activations. Credit: YOUR_SOURCE_HERE</em></p>
+  <img src="images/Max-pooling-with-2x2-filter-and-stride-2-C-Wikipedia.jpg" alt="Max pooling illustration" width="400">
+  <p><em>Max pooling reduces spatial size while preserving the strongest activations.</em></p>
 </div>
 
 Max Pooling reduces image size while keeping the **strongest activations**.  
