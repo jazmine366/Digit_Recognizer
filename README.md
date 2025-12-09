@@ -15,27 +15,16 @@ The model reaches **98.6% validation accuracy** and a **0.987 Kaggle Public Scor
 ---
 
 ## Model Architecture
-Input (1×28×28)
-   ↓
-Conv2d (1→32, 3×3)
-   ↓
+Conv2d (1 → 32, 3×3)   — learns edges + small patterns
+ReLU                   — removes negative activations
+MaxPool (2×2)          — reduces spatial size
+Conv2d (32 → 64, 3×3)  — learns higher level features
 ReLU
-   ↓
 MaxPool (2×2)
-   ↓
-Conv2d (32→64, 3×3)
-   ↓
+Flatten (64×5×5 → 1600)  
+Fully Connected: 1600 → 128
 ReLU
-   ↓
-MaxPool (2×2)
-   ↓
-Flatten (64×5×5 → 1600)
-   ↓
-Linear (1600 → 128)
-   ↓
-ReLU
-   ↓
-Linear (128 → 10)
+Output Layer: 128 → 10 classes (0-9)
 
 ---
 
@@ -45,7 +34,7 @@ Linear (128 → 10)
 I start with a 28×28 grayscale image shaped (1,28,28).
 Raw pixel values contain both positive and negative information. Applying ReLU removes negative values, keeping only the strongest signals. This allows the network to detect straight segments, bends, and curves in the digits.
 
-RELU = max(0, x) //positive x or just 0 
+RELU = max(0, x) #Positive x or just 0
 
 Without ReLU, outputs behave like straight lines with no change in slope. With ReLU, the network produces “bends and kinks” that represent the curves and corners of digits. 
 Negative inputs are set to zero while positive inputs pass through, highlighting meaningful features and enabling the CNN to learn the essential shapes in the digits for classification.
