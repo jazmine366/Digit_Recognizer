@@ -27,10 +27,10 @@ A 28×28 grayscale image (1 channel). Each pixel is normalized and passed into t
 ---
 
 ## Model Architecture
-- Conv2d(1 → 32, kernel=3)  
-- ReLU  
-- MaxPool2d(2)  
-- Conv2d(32 → 64, kernel=3)  
+- Conv2d(1 → 32, kernel=3)   — learns edges + small patterns
+- ReLU                       — removes negative 
+- MaxPool2d(2)               — reduces spatial 
+- Conv2d(32 → 64, kernel=3)  — learns higher level features
 - ReLU  
 - MaxPool2d(2)  
 - Flatten (64×5×5 → 1600)  
@@ -87,12 +87,28 @@ This helps the model focus on the most important features (like strokes of a dig
 ## CPU vs MPS GPU Training Speed
 
 The same model was trained for **8 epochs** on CPU and on Apple’s MPS GPU.
+<div align="center">
 
-| Device | Train Time (8 epochs) |
-|--------|-------------------------|
-| **CPU** | 89.08 seconds |
-| **MPS GPU** | 21.54 seconds |
-| **Speedup** | **4.14× faster** |
+<table>
+  <tr>
+    <th>Device</th>
+    <th>Train Time (8 epochs)</th>
+  </tr>
+  <tr>
+    <td>CPU</td>
+    <td>89.08 seconds</td>
+  </tr>
+  <tr>
+    <td>MPS GPU</td>
+    <td>21.54 seconds</td>
+  </tr>
+  <tr>
+    <td><strong>Speedup</strong></td>
+    <td><strong>4.14× faster</strong></td>
+  </tr>
+</table>
+
+</div>
 
 ---
 
