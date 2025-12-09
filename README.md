@@ -10,44 +10,49 @@ The model reaches **98.6% validation accuracy** and a **0.987 Kaggle Public Scor
 - Utilizes **Apple Metal Performance Shaders** (MPS) for GPU acceleration  
 - 4.14× faster training compared to CPU  
 - 0.987 Kaggle Public Score  
-- Complete pipeline:
-  - Data preprocessing  
-  - Train/validation split  
-  - CNN architecture  
-  - Training + validation  
-  - Kaggle CSV submission generation  
-
+  Complete pipeline:
+  - Data preprocessing -> Train/validation split -> CNN architecture -> Training + validation -> Kaggle CSV submission generation
 ---
 
 ## Model Architecture
-- Conv2d(1 → 32, kernel=3)
-- ReLU
-- MaxPool2d(2)
-- Conv2d(32 → 64, kernel=3)
-- ReLU
-- MaxPool2d(2)
-- Flatten (64×5×5 → 1600)
-- Linear 1600 → 128
-- ReLU
-- Linear 128 → 10
+Input (1×28×28)
+   ↓
+Conv2d (1→32, 3×3)
+   ↓
+ReLU
+   ↓
+MaxPool (2×2)
+   ↓
+Conv2d (32→64, 3×3)
+   ↓
+ReLU
+   ↓
+MaxPool (2×2)
+   ↓
+Flatten (64×5×5 → 1600)
+   ↓
+Linear (1600 → 128)
+   ↓
+ReLU
+   ↓
+Linear (128 → 10)
 
 ---
 
-## Building the Model
-![Handwritten-digits-from-the-MNIST-data-set-5-For-practical-machine-learning-tasks](https://github.com/user-attachments/assets/288bd39f-6327-483b-b4dd-58905d871f8e)
-You start with a 28×28 grayscale image shaped (1,28,28).
+## Building the Model 
+<img src="https://github.com/user-attachments/assets/288bd39f-6327-483b-b4dd-58905d871f8e" width="180">
+
+I start with a 28×28 grayscale image shaped (1,28,28).
 Raw pixel values contain both positive and negative information. Applying ReLU removes negative values, keeping only the strongest signals. This allows the network to detect straight segments, bends, and curves in the digits.
-Without ReLU, outputs behave like straight lines with no change in slope. With ReLU, the network produces “bends and kinks” that represent the curves and corners of digits. For example:
-\
-\
-_____/
-\
+
+RELU = max(0, x) //positive x or just 0 
+
+Without ReLU, outputs behave like straight lines with no change in slope. With ReLU, the network produces “bends and kinks” that represent the curves and corners of digits. 
 Negative inputs are set to zero while positive inputs pass through, highlighting meaningful features and enabling the CNN to learn the essential shapes in the digits for classification.
 
 ---
 
 ## CPU vs MPS GPU Training Speed
-
 The same model was trained for **8 epochs** on CPU and on Apple’s MPS GPU.
 
 | Device | Train Time |
