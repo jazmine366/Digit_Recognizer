@@ -17,8 +17,8 @@ The model reaches **98.6% validation accuracy** and a **0.987 Kaggle Public Scor
 ##  Input Example (What the Model Sees)
 
 <div align="center">
-  <img src="images/1.png" alt="digit 1" width="180" />
-  <img src="images/2.png" alt="digit 2" width="180" />
+  <img src="images/1.png" alt="digit 1" width="250" />
+  <img src="images/2.png" alt="digit 2" width="250" />
   <p><em>Example 28×28 grayscale MNIST digit.</em></p>
 </div>
 
