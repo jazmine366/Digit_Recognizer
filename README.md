@@ -6,45 +6,80 @@ The model reaches **98.6% validation accuracy** and a **0.987 Kaggle Public Scor
 ---
 
 ## Features
-- Custom CNN built from scratch using PyTorch  
-- Utilizes **Apple Metal Performance Shaders** (MPS) for GPU acceleration  
-- 4.14× faster training compared to CPU  
-- 0.987 Kaggle Public Score  
-  Complete pipeline:
-  - Data preprocessing -> Train/validation split -> CNN architecture -> Training + validation -> Kaggle CSV submission generation
+- CNN pipeline built from scratch using PyTorch  
+- Efficient training with **Apple Metal Performance Shaders (MPS)** for GPU acceleration  
+- Achieves **high accuracy (0.987 Kaggle score) with minimal epochs**  
+- Lightweight architecture optimized for 28×28 grayscale inputs  
+- Generates ready-to-submit Kaggle CSV predictions  
+
+---
+
+##  Input Example (What the Model Sees)
+
+![MNIST Example Digit](IMAGE_URL_1)  
+*Credit: MNIST Dataset*
+
+A 28×28 grayscale image (1 channel). Each pixel is normalized and passed into the CNN as a tensor shaped **(1, 28, 28)**.
+
 ---
 
 ## Model Architecture
-Conv2d (1 → 32, 3×3)   — learns edges + small patterns
-ReLU                   — removes negative activations
-MaxPool (2×2)          — reduces spatial size
-Conv2d (32 → 64, 3×3)  — learns higher level features
-ReLU
-MaxPool (2×2)
-Flatten (64×5×5 → 1600)  
-Fully Connected: 1600 → 128
-ReLU
-Output Layer: 128 → 10 classes (0-9)
+- Conv2d(1 → 32, kernel=3)  
+- ReLU  
+- MaxPool2d(2)  
+- Conv2d(32 → 64, kernel=3)  
+- ReLU  
+- MaxPool2d(2)  
+- Flatten (64×5×5 → 1600)  
+- Linear 1600 → 128  
+- ReLU  
+- Linear 128 → 10  
 
 ---
 
-## Building the Model 
-<img src="https://github.com/user-attachments/assets/288bd39f-6327-483b-b4dd-58905d871f8e" width="180">
+## 🧠 How the CNN Learns Features
 
-I start with a 28×28 grayscale image shaped (1,28,28).
-Raw pixel values contain both positive and negative information. Applying ReLU removes negative values, keeping only the strongest signals. This allows the network to detect straight segments, bends, and curves in the digits.
+### 1️⃣ Convolution Layers Extract Edges & Curves  
+![CNN Filters / Feature Maps](IMAGE_URL_2)  
+*Credit: Stanford CS231n Visualizations*
 
-RELU = max(0, x) #Positive x or just 0
+The first conv layer learns **edges and straight segments** (/, \\, —).  
+The second conv layer learns **bends, corners, and curves** needed to recognize digits like 3, 5, and 8.
 
-Without ReLU, outputs behave like straight lines with no change in slope. With ReLU, the network produces “bends and kinks” that represent the curves and corners of digits. 
-Negative inputs are set to zero while positive inputs pass through, highlighting meaningful features and enabling the CNN to learn the essential shapes in the digits for classification.
+---
+
+##  Understanding ReLU (Why It Creates “Bends & Curves”)
+
+![ReLU Activation Function](IMAGE_URL_3)  
+*Credit: Wikipedia / ReLU Activation Graph*
+
+Raw pixel values contain positive and negative information.  
+**ReLU removes all negative values**, leaving only strong positive signals.  
+This creates sharp changes in slope — the “kinks” that represent curves in handwritten digits.
+
+Without ReLU → the model can only form straight-line behavior.  
+With ReLU → the model can detect meaningful shape transitions such as:
+
+
+These shape transitions help the CNN understand digits as combinations of **lines + bends + curves**.
+
+---
+
+## 🔍 Max Pooling: Keeping Only the Meaningful Parts
+
+![Max Pooling Diagram](IMAGE_URL_4)  
+*Credit: DeepLearning.ai / Coursera CNN Course*
+
+Max Pooling reduces image size while keeping the **strongest activations**.  
+This helps the model focus on the most important features (like strokes of a digit) and ignore noise.
 
 ---
 
 ## CPU vs MPS GPU Training Speed
+
 The same model was trained for **8 epochs** on CPU and on Apple’s MPS GPU.
 
-| Device | Train Time |
+| Device | Train Time (8 epochs) |
 |--------|-------------------------|
 | **CPU** | 89.08 seconds |
 | **MPS GPU** | 21.54 seconds |
@@ -56,6 +91,9 @@ The same model was trained for **8 epochs** on CPU and on Apple’s MPS GPU.
 - **Validation Accuracy:** 98.64%  
 - **Best Kaggle Score:** 0.98728  
 - **Best Epoch Count:** 8  
+
+---
+
 
 
 
